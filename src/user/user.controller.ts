@@ -16,19 +16,19 @@ export class UserController {
   constructor(private taskService: TaskService) {}
 
   @UseGuards(AuthGuard('jwt'))
-  @Post()
+  @Post('task/create')
   createTask(@Request() req, @Body('name') name: string): Promise<Task> {
     return this.taskService.createTask(name, req.user.userId);
   }
 
   @UseGuards(AuthGuard('jwt'))
-  @Get()
+  @Get('task')
   findTasksOfUser(@Request() req): Promise<Task[]> {
     return this.taskService.findTasksOfUser(req.user.userId);
   }
 
   @UseGuards(AuthGuard('jwt'))
-  @Patch()
+  @Patch('task/update')
   updateTaskState(@Body('id') id:string, @Body('newStatus') newStatus:boolean) : Promise<Task>{
     return this.taskService.updateTaskState(id,newStatus)
   }

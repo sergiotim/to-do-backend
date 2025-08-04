@@ -32,13 +32,13 @@ export class TaskService {
     });
   }
 
-  async updateTaskState(taskId: string, newState: boolean): Promise<Task> {
+  async updateTaskState(taskId: string, newStatus: boolean): Promise<Task> {
     return this.prisma.task.update({
       where: {
         id: taskId,
       },
       data: {
-        isChecked: newState,
+        isChecked: newStatus,
       },
     });
   }

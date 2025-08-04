@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  Patch,
   Post,
   Request,
   UseGuards,
@@ -24,5 +25,11 @@ export class UserController {
   @Get()
   findTasksOfUser(@Request() req): Promise<Task[]> {
     return this.taskService.findTasksOfUser(req.user.userId);
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Patch()
+  updateTaskState(@Body('id') id:string, @Body('newStatus') newStatus:boolean) : Promise<Task>{
+    return this.taskService.updateTaskState(id,newStatus)
   }
 }

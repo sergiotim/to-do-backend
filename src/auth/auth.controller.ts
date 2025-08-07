@@ -87,7 +87,7 @@ export class AuthController {
       },
     },
   })
-  @ApiResponse({status:401,description:'Não autorizado, token inválido'})
+  @ApiResponse({ status: 401, description: 'Não autorizado, token inválido' })
   getProfile(@Request() req): { userId: string; email: string } {
     return req.user;
   }
